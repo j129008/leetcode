@@ -1,9 +1,9 @@
 #include<iostream>
 #include<string>
-#include<map>
+#include<unordered_map>
 using namespace std;
 
-map<string, int> roman_one_char = {
+unordered_map<string, int> roman_one_char = {
     {"I", 1},
     {"V", 5},
     {"X", 10},
@@ -13,7 +13,7 @@ map<string, int> roman_one_char = {
     {"M", 1000}
 };
 
-map<string, int> roman_two_char = {
+unordered_map<string, int> roman_two_char = {
     {"IV", 4},
     {"IX", 9},
     {"XL", 40},
@@ -24,7 +24,7 @@ map<string, int> roman_two_char = {
 
 int romanToInt(string s) {
     int roman_int = 0;
-    map<string, int>::iterator iter;
+    unordered_map<string, int>::iterator iter;
     while(s.size() != 0){
         string head = s.substr(0,2);
         iter = roman_two_char.find(head);
