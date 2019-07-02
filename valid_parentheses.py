@@ -14,5 +14,16 @@ def isValid(s):
         return True
     return False
 
+def isValidFastImp(s):
+    bracket = [ '()', '[]', '{}' ]
+
+    for _ in range(len(s)//2):
+        for b in bracket:
+            s = s.replace(b, '')
+
+    if s == '':
+        return True
+    return False
+
 
 print(isValid(']'))
