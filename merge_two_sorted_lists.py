@@ -39,6 +39,25 @@ def mergeTwoLists(l1, l2):
     return l1_head.next
 
 
+def mergeTwoListsFastImp(l1, l2):
+    ans = ListNode(-1)
+    tail = ans
+    while (l1 is not None) and (l2 is not None):
+        if l1.val > l2.val:
+            tail.next = l2
+            l2 = l2.next
+        else:
+            tail.next = l1
+            l1 = l1.next
+        tail = tail.next
+
+    if l1 is not None:
+        tail.next = l1
+    else:
+        tail.next = l2
+    return ans.next
+
+
 l1 = ListNode(1)
 l1.push_back(2)
 l1.push_back(4)
