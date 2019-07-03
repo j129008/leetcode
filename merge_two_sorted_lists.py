@@ -21,22 +21,21 @@ class ListNode:
 
 
 def mergeTwoLists(l1, l2):
-    l1_head = ListNode(0)
-    l1_head.next = l1
-    l2_head = l2
-    insert_point = l1_head
-    while insert_point.next is not None and l2_head is not None:
-        if insert_point.next.val > l2_head.val:
-            l2_body = l2_head.next
-            l2_head.next = insert_point.next
-            insert_point.next = l2_head
-            l2_head = l2_body
+    ans = ListNode(0)
+    ans.next = l1
+    front_tail = ans
+    while front_tail.next is not None and l2 is not None:
+        if front_tail.next.val > l2.val:
+            back_head = front_tail.next
+            front_tail.next = l2
+            l2 = l2.next
+            front_tail.next.next = back_head
         else:
-            insert_point = insert_point.next
+            front_tail = front_tail.next
 
-    if l2_head is not None:
-        insert_point.next = l2_head
-    return l1_head.next
+    if l2 is not None:
+        front_tail.next = l2
+    return ans.next
 
 
 def mergeTwoListsFastImp(l1, l2):
@@ -66,5 +65,5 @@ l2 = ListNode(3)
 l2.push_back(6)
 l2.push_back(7)
 
-l3 = mergeTwoLists(l1, l2)
+l3 = mergeTwoLists(l2, l1)
 l3.show()
