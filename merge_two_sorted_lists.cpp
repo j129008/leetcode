@@ -46,10 +46,37 @@ void ListNode::clear(){
     }
 }
 
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2){
+    ListNode ans = ListNode(-1);
+    ListNode* tail = &ans;
+    while((l1 != NULL) && (l2 != NULL)){
+        if(l1->val > l2->val ){
+            tail->next = l2;
+            l2 = l2->next;
+        }else{
+            tail->next = l1;
+            l1 = l1->next;
+        }
+        tail = tail->next;
+    }
+    if(l1 != NULL) tail->next = l1;
+    else tail->next = l2;
+
+    return ans.next;
+}
+
 int main(){
-    ListNode* head = new ListNode(1);
-    head->push_back(2);
-    head->push_back(3);
-    head->show();
-    head->clear();
+    ListNode* l1 = new ListNode(1);
+    l1->push_back(2);
+    l1->push_back(4);
+
+    ListNode* l2 = new ListNode(3);
+    l2->push_back(6);
+    l2->push_back(7);
+
+    ListNode* l3 = mergeTwoLists(l2, l1);
+    l3->show();
+    l3->clear();
+
+    return 0;
 }
