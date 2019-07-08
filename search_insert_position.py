@@ -1,8 +1,6 @@
 def searchInsert(nums, target):
     for i in range(len(nums)):
-        if nums[i] == target:
-            return i
-        elif nums[i] >= target:
+        if nums[i] >= target:
             return i
     return i+1
 
