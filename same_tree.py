@@ -13,20 +13,25 @@ def treeSearch(node, steps):
         treeSearch(node.right, steps)
 
 def isSameTree(p, q):
-    if p is not None and q is not None:
-        if p.val != q.val:
-            return False
-        if not isSameTree(p.left, q.left):
-            return False
-        if not isSameTree(p.right, q.right):
-            return False
-        return True
-    elif p is None and q is not None:
+    if p is None and q is not None:
         return False
-    elif p is not None and q is None:
+
+    if p is not None and q is None:
         return False
-    else:
+
+    if p is None and q is None:
         return True
+
+    if p.val != q.val:
+        return False
+
+    if not isSameTree(p.left, q.left):
+        return False
+
+    if not isSameTree(p.right, q.right):
+        return False
+
+    return True
 
 
 
