@@ -1,3 +1,4 @@
+import ipdb
 
 def addBinary(a, b):
     N = max(len(a), len(b))
@@ -9,25 +10,14 @@ def addBinary(a, b):
     output = ''
     carry = 0
     for i in range(N):
-        adder = int(a[N-i-1]) + int(b[N-i-1]) + carry
+        _a = int(a[N-i-1])
+        _b = int(b[N-i-1])
+        output = str(_a ^ _b ^ carry) + output
+        carry =  (_a & _b) | ((_a ^ _b) & carry)
 
-        if adder == 2:
-            carry = 1
-            adder = 0
-            output = '0' + output
-        elif adder == 1:
-            output = '1' + output
-            carry = 0
-        elif adder == 3:
-            output = '1' + output
-            carry = 1
-        else:
-            output = '0' + output
-            carry = 0
     if carry == 1:
         output = '1' + output
     return output
-
 
 res = addBinary('101', '111')
 print(res)
