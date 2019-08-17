@@ -2,10 +2,8 @@ import ipdb
 
 def addBinary(a, b):
     N = max(len(a), len(b))
-    if(len(a) > len(b)):
-        b = '0'*(N-len(b)) + b
-    else:
-        a = '0'*(N-len(a)) + a
+    a = a.zfill(N)
+    b = b.zfill(N)
 
     output = ''
     carry = 0
