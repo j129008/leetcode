@@ -31,17 +31,17 @@ def reverseList(head: ListNode) -> ListNode:
     if head is None:
         return None
 
-    node_ptrs = []
+    ptrs = []
     it = head
     while it:
-        node_ptrs.append(it)
+        ptrs.append(it)
         it = it.next
-    reverse_ptrs = node_ptrs[::-1]
-    for i, ptr in enumerate(reverse_ptrs[:-1]):
-        reverse_ptrs[i].next = reverse_ptrs[i+1]
-    reverse_ptrs[-1].next = None
 
-    return reverse_ptrs[0]
+    for i in range(len(ptrs)):
+        ptrs[i].next = ptrs[i-1]
+    ptrs[0].next = None
+
+    return ptrs[-1]
 
 
 if __name__ == '__main__':
