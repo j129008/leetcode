@@ -12,33 +12,34 @@ class ListNode:
 
 def isPalindrome(head: ListNode) -> bool:
     fast, slow = head, head
-    while fast.next and fast.next.next:
+    while fast and fast.next:
         fast = fast.next.next
         slow = slow.next
 
-    middle = slow.next
-    if middle is None:
-        return True
+    if not fast:
+        slow = slow.next
 
-    pre = middle
-    cur = middle.next
-    pre.next = None
-    while cur:
-        next_node = cur.next
-        cur.next = pre
-        pre = cur
-        cur = next_node
+    pre = None
+    while slow:
+        slow_next = slow.next
+        slow.next = pre
+        pre = slow
+        slow = slow_next
 
-    while pre:
-        if pre.val != head.val:
-            return False
-        pre = pre.next
+    while head and head.val == pre.val:
         head = head.next
+        pre = pre.next
 
-    return True
+    return not pre
 
 
 if __name__ == '__main__':
     head = ListNode(1)
+    head.next = ListNode(2)
+    head.next.next = ListNode(1)
+    assert isPalindrome(head) is True
 
-    print(isPalindrome(head))
+    head = ListNode(1)
+    head.next = ListNode(2)
+    head.next.next = ListNode(2)
+    assert isPalindrome(head) is False
