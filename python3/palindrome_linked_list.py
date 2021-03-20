@@ -19,9 +19,6 @@ def isPalindrome(head: ListNode) -> bool:
         fast = fast.next.next
         slow = slow.next
 
-    if not fast:
-        slow = slow.next
-
     pre = None
     while slow:
         slow_next = slow.next
@@ -29,7 +26,7 @@ def isPalindrome(head: ListNode) -> bool:
         pre = slow
         slow = slow_next
 
-    while head and head.val == pre.val:
+    while pre and head.val == pre.val:
         head = head.next
         pre = pre.next
 
@@ -51,4 +48,10 @@ if __name__ == '__main__':
     assert isPalindrome(head) is True
 
     head = None
+    assert isPalindrome(head) is True
+
+    head = ListNode(1)
+    head.next = ListNode(2)
+    head.next.next = ListNode(2)
+    head.next.next.next = ListNode(1)
     assert isPalindrome(head) is True
